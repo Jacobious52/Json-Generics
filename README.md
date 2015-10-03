@@ -1,5 +1,5 @@
 # Generics
-Classes to provide Generic like support for common C++ data types.
+Classes to provide plain text serializable generic support for common C++ data types.
 
 Allows for having mixed types in other generic types.
 Built in plain text serialization behaviour using streams
