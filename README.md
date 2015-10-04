@@ -14,7 +14,7 @@ e.g Have a map with a string and a vector, which has a float and a string and an
 
 `GArray - std::vector<Generic *>`
 
-`Dict - std::map<std::string, Generic *>`
+`GDict - std::map<std::string, Generic *>`
 ____
 `GConfig` - Wrapper around a `GDict`
 Used for writing and reading from a file. In a json like format
