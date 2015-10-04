@@ -35,7 +35,7 @@ std::istream& GArray::read(std::istream& is)
     }
     else
     {
-        std::cout << "GArray: missing last ]" << std::endl;
+        std::cerr << "GWarning: GArray missing last ]" << std::endl;
         good = false;
     }
 

@@ -5,13 +5,13 @@
 #include <string>
 #include <streambuf>
 
-// sam's code that I totally cut up and fixed and enhanced ;)
 static inline std::vector<std::string> splitLine(std::string line, bool &good)
 {
     std::vector<std::string> parts;
     std::string value = "";
     bool escaped = false;
     char escapeChar = '\0';
+    int escapeDepth = 0;
 
     if (line == "")
     {
@@ -22,22 +22,33 @@ static inline std::vector<std::string> splitLine(std::string line, bool &good)
     {
         if (line[i] == '[')
         {
-            escapeChar = ']';
-            escaped = true;
+            if (escapeChar == ']' || escapeChar == '\0')
+            {
+                escapeChar = ']';
+                escaped = true;
+                escapeDepth++;
+            }
             // keep the [
             value += line[i];
         }
         else if (line[i] == '{')
         {
-            escapeChar = '}';
-            escaped = true;
+            if (escapeChar == '}' || escapeChar == '\0')
+            {
+                escapeChar = '}';
+                escaped = true;
+                escapeDepth++;
+            }
             // keep the [
             value += line[i];
         }
         else if (line[i] == escapeChar)
         {
-            escapeChar = '\0';
-            escaped = false;
+            if (--escapeDepth == 0)
+            {
+                escapeChar = '\0';
+                escaped = false;
+            }
             // keep the ]
             value += line[i];
         }
@@ -55,7 +66,7 @@ static inline std::vector<std::string> splitLine(std::string line, bool &good)
 
     if (escaped)
     {
-        std::cout << "Generic : missing inner " << escapeChar << std::endl;
+        std::cerr << "GWarning: Generic missing inner " << escapeChar << std::endl;
         good = false;
     }
 

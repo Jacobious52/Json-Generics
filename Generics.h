@@ -63,7 +63,5 @@ static inline GDict *GDictMake(std::map<std::string, Generic *> v)
     return Generic::make<GDict>(v);
 }
 
-
-
 #endif // GENERICS_H
 

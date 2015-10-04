@@ -1,0 +1,23 @@
+{
+    "biomes": {
+        "forest": {
+            "freq": 10,
+            "temp": 3,
+            "smell": "lavendar"
+        },
+        "plains": {
+            "freq": 3,
+            "temp": 5,
+            "smell": "fresh cut grass"
+        }
+    },
+    "regions": {
+        "house" : {
+            "freq": 20
+        }
+    },
+    "tiles": {
+        "wood": [20, ".", "blue"],
+        "door": [30, "|", "brown"]
+    }
+}

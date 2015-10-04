@@ -31,14 +31,14 @@ std::istream& GDict::read(std::istream& is)
     getline(flatStream, s);
 
     // get the line without the ]
-    size_t last_break = s.find_last_of('}');
-    if (last_break != std::string::npos)
+    size_t lastBreak = s.find_last_of('}');
+    if (lastBreak != std::string::npos)
     {
-        s.erase(last_break);
+        s.erase(lastBreak);
     }
     else
     {
-        std::cout << "GDict: missing last }" << std::endl;
+        std::cerr << "GWarning: GDict missing last }" << std::endl;
         good = false;
     }
 
@@ -47,16 +47,27 @@ std::istream& GDict::read(std::istream& is)
     for (size_t i = 0; i < items.size(); ++i)
     {
         // replace the : with a space so we can easily read it with the extraction op
-        size_t pos = items[i].find_last_of(":");
+        size_t pos = items[i].find_first_of(":");
         if (pos != std::string::npos)
         {
             items[i].replace(pos, 1, " ");
         }
         std::stringstream typeStream(items[i]);
 
-        // get the key
+        // get the key without the first "
         std::string key = "";
         typeStream >> key;
+
+        //remove the quotes
+        if (key[0] == '\"' && key[key.length()-1] == '\"')
+        {
+            key.erase(key.begin());
+            key.erase(key.end()-1);
+        }
+        else
+        {
+            std::cerr << "GWarning: GDict key " << key << " missing \"" << std::endl;
+        }
 
         // get the rest of the typeStream
         std::string val = "";
