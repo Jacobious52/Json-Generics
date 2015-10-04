@@ -1,8 +1,8 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <vector>
 #include <string>
+#include <vector>
 #include <streambuf>
 
 static inline std::vector<std::string> splitLine(std::string line, bool &good)
