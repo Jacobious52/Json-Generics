@@ -1,7 +1,7 @@
 # The compiler to use
 CC = g++
 # The compiler flags to use
-CPPFLAGS = -pedantic -Wall -O2
+CPPFLAGS = -pedantic -std=c++14 -Wall -O2
 
 # the name of the outputed executable binary
 EXENAME = main
