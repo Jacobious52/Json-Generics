@@ -1,3 +1,10 @@
+/************************************\
+|*   Copyright 2015 Jacob Gonzalez  *|
+|*             a1687803             *|
+|* -------------------------------- *|
+|*          (╯°□°）╯︵ ┻━┻           *|
+\************************************/
+
 #ifndef UTILS_H
 #define UTILS_H
 
@@ -12,6 +19,7 @@ static inline std::vector<std::string> splitLine(std::string line, bool &good)
     bool escaped = false;
     char escapeChar = '\0';
     int escapeDepth = 0;
+    bool inString = false;
 
     if (line == "")
     {
@@ -20,6 +28,20 @@ static inline std::vector<std::string> splitLine(std::string line, bool &good)
 
     for (unsigned i = 0; i < line.length(); i++)
     {
+        if (line[i] == '"')
+        {
+            if (i > 0 && line[i-1] != '\\')
+            {
+                inString = !inString;
+            }
+        }
+
+        if (inString)
+        {
+            value += line[i];
+            continue;
+        }
+
         if (line[i] == '[')
         {
             if (escapeChar == ']' || escapeChar == '\0')

@@ -1,12 +1,19 @@
+/************************************\
+|*   Copyright 2015 Jacob Gonzalez  *|
+|*             a1687803             *|
+|* -------------------------------- *|
+|*          (╯°□°）╯︵ ┻━┻           *|
+\************************************/
+
 #ifndef GENERICS_H
 #define GENERICS_H
-
 
 #include "Generic.h"
 #include "GNumber.h"
 #include "GString.h"
 #include "GArray.h"
 #include "GDict.h"
+#include "GObject.h"
 
 #include <string>
 #include <sstream>

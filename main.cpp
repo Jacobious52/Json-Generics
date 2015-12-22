@@ -1,3 +1,10 @@
+/************************************\
+|*   Copyright 2015 Jacob Gonzalez  *|
+|*             a1687803             *|
+|* -------------------------------- *|
+|*          (╯°□°）╯︵ ┻━┻           *|
+\************************************/
+
 #include "GConfig.h"
 
 int main()
@@ -30,6 +37,12 @@ int main()
 
     // Get the 3rd String from the array door
     std::cout << GStringFromArray(door, 2) << std::endl;
+
+    //------------------------GOBJECT-----------------------------//
+
+    GObject json(biomes);
+    int a = json["tiles"]["door"][0].raw()->asInt();
+
 
     return 0;
 }
