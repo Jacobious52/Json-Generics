@@ -15,7 +15,7 @@ std::ostream& GDict::print(std::ostream& os)
 
     for (std::map<std::string, Generic *>::iterator it = value.begin(); it != value.end(); ++it)
     {
-        os << "\t" << it->first << ": " << it->second;
+        os << "\t\"" << it->first << "\": " << it->second;
 
         if (index++ < value.size()-1)
         {

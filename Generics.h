@@ -8,12 +8,12 @@
 #ifndef GENERICS_H
 #define GENERICS_H
 
+
 #include "Generic.h"
 #include "GNumber.h"
 #include "GString.h"
 #include "GArray.h"
 #include "GDict.h"
-#include "GObject.h"
 
 #include <string>
 #include <sstream>
