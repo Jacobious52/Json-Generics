@@ -6,10 +6,13 @@
 \************************************/
 
 #include "GConfig.h"
+#include "Json.h"
 
 int main()
 {
-    // example of loading in a json file to Generic Objects
+    //-old--stuff--//
+
+   /* // example of loading in a json file to Generic Objects
     GConfig config = GConfig::read("test.json");
     // print it
     std::cout << config.getDict() << std::endl;
@@ -37,7 +40,33 @@ int main()
 
     // Get the 3rd String from the array door
     std::cout << GStringFromArray(door, 2) << std::endl;
+*/
 
+    //--new stuff---
+
+    //--json--//
+
+    Json json = Json::load("test.json");
+
+    std::cout << json["biomes"]["forest"]["smell"].asString() << std::endl;
+    std::cout << json["tiles"]["wood"][2].asString() << std::endl;
+
+    std::cout << "[enumerating an array]" << std::endl;
+    for (auto gobject : json["tiles"]["door"].asArray())
+    {
+        std::cout << gobject << std::endl;
+    }
+
+    // say i want the plains biome as a map
+
+    //auto plains = json["biomes"]["plains"].asDict();
+     // or
+    auto plains = asDict(json["biomes"]["plains"].asGeneric());
+
+    // now it's a map we have to use the old ways (no json object)
+
+    std::string smell = asString(plains["smell"]);
+    std::cout << "plains smell like " << smell << std::endl;
 
     return 0;
 }

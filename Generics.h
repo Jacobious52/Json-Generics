@@ -146,5 +146,32 @@ static inline GString *GStringFromArray(Generic *array, size_t index)
     return 0;
 }
 
+// conversion helpers
+
+static inline std::string asString(Generic *gstring)
+{
+    return gstring->as<GString>()->value;
+}
+
+static inline int asInt(Generic *gnumber)
+{
+    return gnumber->as<GNumber>()->asInt();
+}
+
+static inline float asFloat(Generic *gnumber)
+{
+    return gnumber->as<GNumber>()->asFloat();
+}
+
+static inline std::vector<Generic *> asArray(Generic *garray)
+{
+    return garray->as<GArray>()->value;
+}
+
+static inline std::map<std::string, Generic *> asDict(Generic *gdict)
+{
+    return gdict->as<GDict>()->value;
+}
+
 #endif // GENERICS_H
 

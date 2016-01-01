@@ -27,7 +27,7 @@ public:
     {
         // garray own the data now so delete all the children
         // this is because it could be n deep with arrays
-        for (int i = 0; i < count(); ++i)
+        for (size_t i = 0; i < count(); ++i)
         {
             value[i]->free();
             // set to NULL.. maybe c++11 nullptr?
