@@ -6,7 +6,8 @@ Built in json serialization behaviour using streams
 
 e.g Have a map with a string and a vector, which has a float and a string and another map inside, with an int... etc
 
-#Basic Usage
+#Really Basic Reading From File Usage
+This uses a json helper to avoid messing with pointers and generic types
 
 ```
 Json json = Json::load("imaginary_users_list_or_something.json");
