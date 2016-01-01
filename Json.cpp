@@ -16,6 +16,14 @@ Json Json::load(std::string filename)
     return Json(jsonDict, 0);
 }
 
+Json Json::loadString(std::string str)
+{
+    std::stringstream ss(str);
+    GDict *jsonDict = GDictMake();
+    ss >> jsonDict;
+    return Json(jsonDict, 0);
+}
+
 Json::~Json()
 {
     if (refCount == 0)

@@ -16,6 +16,8 @@ class Json
 public:
     // use this
     static Json load(std::string filename);
+    // or this
+    static Json loadString(std::string str);
 
     // primitive reference counting so don't keep intermediate objects
     ~Json();
