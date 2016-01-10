@@ -21,6 +21,9 @@ public:
 
     static Json fromGeneric(Generic *g);
 
+    Json(){}
+    Json(Generic *object, int ref);
+
     // primitive reference counting so don't keep intermediate objects
     ~Json();
 
@@ -35,7 +38,7 @@ public:
     {
         for (auto &g : asArray())
         {
-            f(Json(g, refCount));
+            f(Json(g, refCount+1));
         }
     }
 
@@ -53,7 +56,7 @@ public:
     {
         for (auto &g : asDict())
         {
-            f(g.first, Json(g.second, refCount));
+            f(g.first, Json(g.second, refCount+1));
         }
     }
 
@@ -88,7 +91,6 @@ public:
     Generic *asGeneric();
 
 private:
-        Json(Generic *object, int ref);
         Generic *gobject;
         int refCount;
 };
