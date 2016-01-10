@@ -7,7 +7,7 @@
 
 #include "Json.h"
 
-Json Json::load(std::string filename)
+Json Json::fromFile(std::string filename)
 {
     std::ifstream file(filename);
     GDict *jsonDict = GDictMake();
@@ -16,12 +16,17 @@ Json Json::load(std::string filename)
     return Json(jsonDict, 0);
 }
 
-Json Json::loadString(std::string str)
+Json Json::fromString(std::string str)
 {
     std::stringstream ss(str);
     GDict *jsonDict = GDictMake();
     ss >> jsonDict;
     return Json(jsonDict, 0);
+}
+
+Json Json::fromGeneric(Generic *g)
+{
+    return Json(g, 0);
 }
 
 Json::~Json()

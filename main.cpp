@@ -46,16 +46,20 @@ int main()
 
     //--json--//
 
-    Json json = Json::load("test.json");
+    Json json = Json::fromFile("test.json");
 
     std::cout << json["biomes"]["forest"]["smell"].asString() << std::endl;
     std::cout << json["tiles"]["wood"][2].asString() << std::endl;
 
     std::cout << "[enumerating an array]" << std::endl;
-    for (auto gobject : json["tiles"]["door"].asArray())
-    {
-        std::cout << gobject << std::endl;
-    }
+    json["tiles"]["door"].iter([](Json g){
+        std::cout << g.asGeneric() << std::endl;
+    });
+
+    std::cout << "[enumerating a dict of ints]" << std::endl;
+    json["test"].zip([](std::string key, int i){
+        std::cout << key << " = " << i << std::endl;
+    }, asInt);
 
     // say i want the plains biome as a map
 

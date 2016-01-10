@@ -19,5 +19,12 @@
     "tiles": {
         "wood": [20, ".", "blue"],
         "door": [30, "|", "brown"]
+    },
+    "test" : {
+        "hello" : 3,
+        "goodbye" : 2,
+        "from" : 7,
+        "the" : 8,
+        "other" : 7
     }
 }

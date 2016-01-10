@@ -15,9 +15,11 @@ class Json
 {
 public:
     // use this
-    static Json load(std::string filename);
+    static Json fromFile(std::string filename);
     // or this
-    static Json loadString(std::string str);
+    static Json fromString(std::string str);
+
+    static Json fromGeneric(Generic *g);
 
     // primitive reference counting so don't keep intermediate objects
     ~Json();
@@ -27,6 +29,42 @@ public:
 
     // return a json from a array type
     Json operator[](size_t index);
+
+    template <typename Func>
+    void iter(Func f)
+    {
+        for (auto &g : asArray())
+        {
+            f(Json(g, refCount));
+        }
+    }
+
+    template <typename Func, typename To>
+    void iter(Func f, To t)
+    {
+        for (auto &g : asArray())
+        {
+            f(t(g));
+        }
+    }
+
+    template <typename Func>
+    void zip(Func f)
+    {
+        for (auto &g : asDict())
+        {
+            f(g.first, Json(g.second, refCount));
+        }
+    }
+
+    template <typename Func, typename To>
+    void zip(Func f, To t)
+    {
+        for (auto &g : asDict())
+        {
+            f(g.first, t(g.second));
+        }
+    }
 
     // same as global asArray()
     // no type checking. use at own risk
