@@ -69,6 +69,21 @@ public:
         }
     }
 
+    bool has(std::string key);
+
+    template <typename Fail, typename To, typename Func>
+    void tryGet(std::string key, To t, Func f, Fail e)
+    {
+        if (has(key))
+        {
+            f(t(asDict()[key]));
+        }
+        else
+        {
+            e();
+        }
+    }
+
     // same as global asArray()
     // no type checking. use at own risk
     std::vector<Generic *> asArray();

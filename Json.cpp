@@ -47,6 +47,11 @@ Json Json::operator[](size_t index)
     return Json(gobject->as<GArray>()->at<Generic>(index), refCount+1);
 }
 
+bool Json::has(std::string key)
+{
+    return gobject->as<GDict>()->value.find(key) != gobject->as<GDict>()->value.end();
+}
+
 std::vector<Generic *> Json::asArray()
 {
     return gobject->as<GArray>()->value;

@@ -48,7 +48,24 @@ int main()
 
     Json json = Json::fromFile("test.json");
 
-    std::cout << json["biomes"]["forest"]["smell"].asString() << std::endl;
+    // using has to check
+    if (json["biomes"]["forest"].has("smell")) {
+        // now get the value
+        std::cout << json["biomes"]["forest"]["smell"].asString() << std::endl;
+    } else {
+        std::cout << "not found" << std::endl;
+    }
+
+    // using tryGet with lambdas and type function
+    json["biomes"]["forest"].tryGet("smell", asString, [](std::string value) {
+        // use the value of type ~~~~~~~~~~~~~~^^^ passed into ~~~~~~~~^^^
+        std::cout << value << std::endl;
+    }, [](){
+        // else lambda
+        std::cout << "not found" << std::endl;
+    });
+
+    /*std::cout << json["biomes"]["forest"]["smell"].asString() << std::endl;
     std::cout << json["tiles"]["wood"][2].asString() << std::endl;
 
     std::cout << "[enumerating an array]" << std::endl;
@@ -71,6 +88,6 @@ int main()
 
     std::string smell = asString(plains["smell"]);
     std::cout << "plains smell like " << smell << std::endl;
-
+*/
     return 0;
 }
